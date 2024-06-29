@@ -1,7 +1,18 @@
 {
-  "name": "npm-react-typescript-template",
-  "version": "1.0.7",
-  "description": "An empty base template for publishing a React TS package to npmjs library.",
+  "name": "npx-jan-calendar",
+  "version": "0.1.0",
+  "description": "janni's calendar",
+  "keywords": [
+    "calendar",
+    "react",
+    "component",
+    "date",
+    "react",
+    "typescript"
+  ],
+  "contributors": [
+    "janni"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
@@ -13,17 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/helgastogova/npm-react-typescript-template"
-  },
-  "keywords": [
-    "react",
-    "typescript",
-    "bottom-sheet"
-  ],
-  "author": "Olga Stogova <helgastogova@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/helgastogova/npm-react-typescript-template/issues"
+    "url": "https://github.com/jungjaeeun/npx-jan-calendar"
   },
   "homepage": "https://github.com/helgastogova/npm-react-typescript-template#readme",
   "peerDependencies": {
@@ -61,7 +62,10 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@rollup/plugin-terser": "^0.4.3",
+    "moment": "^2.30.1",
     "tslib": "^2.6.2"
   }
 }

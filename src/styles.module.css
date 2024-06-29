@@ -1,3 +1,128 @@
-.root {
-  background: gold;
+#root {
+  padding: 1rem;
+}
+
+.sat {
+  color: #2196f3;
+}
+
+.sun {
+  color: #e91e63;
+}
+
+h2 {
+  margin: 2rem;
+  font-size: 14px;
+}
+
+.nav_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+table {
+  width: 100%;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 12px;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 12px;
+  height: 40px;
+}
+
+.today,
+.selected {
+  position: relative;
+}
+
+.today::before,
+.selected::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background-color: #ffe5ea;
+  border-radius: 50%;
+  z-index: -2;
+}
+
+.selected::before {
+  z-index: -1;
+  background-color: bisque;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+* {
+  font-size: 10px;
+}
+
+th,
+td {
+  padding: 2px;
+  height: 18px;
+}
+
+@media (min-width: 360px) {
+  * {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 4px;
+    height: 24px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 480px) {
+  * {
+    font-size: 15px;
+  }
+
+  th,
+  td {
+    padding: 6px;
+    height: 30px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 720px) {
+  * {
+    font-size: 16px;
+  }
+
+  th,
+  td {
+    padding: 8px;
+    height: 50px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
 }
