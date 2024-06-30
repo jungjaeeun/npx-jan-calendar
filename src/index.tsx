@@ -93,7 +93,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       selectBtn === 'prev' ? moment(activeStartDate).subtract(1, type) : moment(activeStartDate).add(1, type);
     setSelectYear(newDate.year());
     setSelectMonth(newDate.month() + 1);
-    setStandardDate(`${newDate.format('YYYY-MM')}-01`);
+    setStandardDate(type === 'month' ? `${newDate.format('YYYY-MM')}-01` : newDate.format('YYYY-MM-DD'));
   };
 
   const setSelectDate = (selectDate: string) => {
@@ -222,6 +222,7 @@ export const Calendar: React.FC<CalendarProps> = ({
           selectedDate={getSelectedYearMonth()}
           showCalendarIcon={false}
           onChange={handleCalendarChange}
+          disabled={type === 'week'}
         ></CustomDate>
         {nav && (
           <button onClick={() => setCalendar('next')}>
