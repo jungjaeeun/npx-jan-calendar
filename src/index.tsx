@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import s from './styles.module.css';
+import { CustomDate } from 'npx-simple-date-picker';
 
 type CalendarProps = {
   nav?: boolean;
@@ -36,22 +37,31 @@ export const Calendar: React.FC<CalendarProps> = ({
   onChange,
 }) => {
   const today: string = moment().format('YYYY-MM-DD');
+  const [type, setType] = useState<'week' | 'month'>(initialType || 'month');
   const [activeStartDate, setStandardDate] = useState<string>(validateDateFormat(initialStandardDate));
-
-  const DAYS = dayTxt.map((cls, index) => ({
-    cls: DEFAULT_DAYS[index],
-    txt: dayTxt[index],
-  }));
-
   const [selectYear, setSelectYear] = useState<number>(Number(activeStartDate.substring(0, 4)));
   const [selectMonth, setSelectMonth] = useState<number>(Number(activeStartDate.substr(5, 2)));
-  const [type, setType] = useState<'week' | 'month'>(initialType || 'month');
 
   useEffect(() => {
     if (onChange) {
       onChange(activeStartDate);
     }
   }, [activeStartDate]);
+
+  const DAYS = dayTxt.map((cls, index) => ({
+    cls: DEFAULT_DAYS[index],
+    txt: dayTxt[index],
+  }));
+
+  const handleCalendarChange = (date: string) => {
+    const newYear = Number(date.split('-')[0]);
+    const newMonth = Number(date.split('-')[1]);
+    const newActiveStartDate = `${date}-01`;
+
+    setSelectYear(newYear);
+    setSelectMonth(newMonth);
+    setStandardDate(newActiveStartDate);
+  };
 
   const getSelectedYearMonth = () => {
     return `${selectYear}-${selectMonth > 9 ? selectMonth : '0' + selectMonth}`;
@@ -83,7 +93,7 @@ export const Calendar: React.FC<CalendarProps> = ({
       selectBtn === 'prev' ? moment(activeStartDate).subtract(1, type) : moment(activeStartDate).add(1, type);
     setSelectYear(newDate.year());
     setSelectMonth(newDate.month() + 1);
-    setStandardDate(newDate.format('YYYY-MM-DD'));
+    setStandardDate(`${newDate.format('YYYY-MM')}-01`);
   };
 
   const setSelectDate = (selectDate: string) => {
@@ -207,7 +217,12 @@ export const Calendar: React.FC<CalendarProps> = ({
             <FontAwesomeIcon icon={faAngleLeft} />
           </button>
         )}
-        <h2>{getSelectedYearMonth()}</h2>
+        <CustomDate
+          type="month"
+          selectedDate={getSelectedYearMonth()}
+          showCalendarIcon={false}
+          onChange={handleCalendarChange}
+        ></CustomDate>
         {nav && (
           <button onClick={() => setCalendar('next')}>
             <FontAwesomeIcon icon={faAngleRight} />
